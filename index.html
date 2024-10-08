@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNSリンクサイト</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #ffcc66, #ff9966);
+            position: relative;
+            overflow: auto;
+            height: 100vh;
+        }
+        #clock {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 20px;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        #site-title {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 32px;
+            color: transparent;
+            text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.7);
+            animation: rainbow 1s infinite;
+            white-space: nowrap;
+        }
+        @keyframes rainbow {
+            0% { text-shadow: 2px 2px 5px red; }
+            16% { text-shadow: 2px 2px 5px orange; }
+            33% { text-shadow: 2px 2px 5px yellow; }
+            50% { text-shadow: 2px 2px 5px green; }
+            66% { text-shadow: 2px 2px 5px blue; }
+            83% { text-shadow: 2px 2px 5px indigo; }
+            100% { text-shadow: 2px 2px 5px red; }
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+            position: relative;
+        }
+        h1, h2 {
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeIn 1s forwards;
+        }
+        h1 {
+            animation-delay: 0.5s;
+        }
+        h2 {
+            animation-delay: 1.5s;
+        }
+        .button {
+            display: inline-block;
+            margin: 20px;
+            padding: 15px 30px;
+            background-color: #ff7f50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeIn 1s forwards 2s;
+        }
+        .button:hover {
+            background-color: #ff4500;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .falling-petals {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .petal {
+            position: absolute;
+            top: -10px;
+            opacity: 0.8;
+            animation: fall 5s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+        .output-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            text-align: left;
+            position: relative;
+        }
+        pre {
+            margin: 0;
+            font-family: "Courier New", Courier, monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div id="clock"></div>
+    <div id="site-title">Kqlem公式サイト</div>
+    
+    <div class="falling-petals">
+        <div class="petal" style="left: 10%; animation-delay: 0s; width: 10px; height: 10px; background: pink; border-radius: 50%;"></div>
+        <div class="petal" style="left: 30%; animation-delay: 1s; width: 12px; height: 12px; background: pink; border-radius: 50%;"></div>
+        <div class="petal" style="left: 50%; animation-delay: 2s; width: 8px; height: 8px; background: pink; border-radius: 50%;"></div>
+        <div class="petal" style="left: 70%; animation-delay: 1.5s; width: 9px; height: 9px; background: pink; border-radius: 50%;"></div>
+        <div class="petal" style="left: 90%; animation-delay: 2.5s; width: 11px; height: 11px; background: pink; border-radius: 50%;"></div>
+    </div>
+
+    <div class="container">
+        <h1>活動場所</h1>
+        <a href="http://www.youtube.com/@%E3%81%8B%E3%82%8C%E3%82%80" class="button">Youtube</a>
+        <a href="https://www.tiktok.com/@kqnatauwu?_t=8qNFyjcYvnW&_r=1" class="button">TikTok</a>
+        <a href="https://mirrativ.page.link/?link=https%3A%2F%2Fwww.mirrativ.com%2Fuser%2F141867148%3Fwhere%3Dprofile&apn=com.dena.mirrativ&ibi=com.dena.mirrativ&isi=1028944599&ius=mirrativ&st=%E3%81%82%E3%81%82%E3%81%82%E3%81%84%F0%9F%91%A4%F0%9F%94%81&sd=&si=https%3A%2F%2Fcdn.mirrativ.com%2Fmirrorman-prod%2Fimage%2Fprofile_image%2F891f165fafcdf0c7696e1d1c40942ae6356ae2b7034b44b9aa9d2735a3208b93_m.jpeg%3F1728387696" class="button">Mirrativ</a>
+        <div>
+            <h2>Minecraft Tool</h2>
+            <button onclick="generateUUID()" class="button">UUID生成</button>
+            <div class="output-container">
+                <pre id="uuidOutput"></pre>
+                <button onclick="copyToClipboard('uuidOutput')" class="button">コピー</button>
+            </div>
+            <button onclick="generateManifest()" class="button">Manifest生成</button>
+            <div class="output-container">
+                <pre id="manifestOutput"></pre>
+                <button onclick="copyToClipboard('manifestOutput')" class="button">コピー</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="background-audio" src="audio.mp3" autoplay loop></audio>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            document.getElementById("clock").innerText = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock(); // 初回実行
+
+        function generateUUID() {
+            const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0,
+                    v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+            displayCharacterByCharacter(uuid, "uuidOutput");
+        }
+
+        function generateManifest() {
+            const uuid = generateUUIDString();
+            const manifest = {
+                "format_version": "2",
+                "header": {
+                    "description": "My Minecraft Addon",
+                    "name": "My Addon",
+                    "uuid": uuid,
+                    "version": [1, 0, 0],
+                    "min_engine_version": [1, 16, 0]
+                },
+                "modules": [{
+                    "description": "My Module",
+                    "type": "data",
+                    "uuid": uuid,
+                    "version": [1, 0, 0]
+                }]
+            };
+            displayCharacterByCharacter(JSON.stringify(manifest, null, 4), "manifestOutput");
+        }
+
+        function generateUUIDString() {
+           
